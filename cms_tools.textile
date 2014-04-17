@@ -81,7 +81,7 @@ potenciais problemas: ele usa muitas gems, o que poderia causar conflito. taggab
 
 h2. jekyll
 
-http://jekyllrb.com / http://jekyllbootstrap.com
+"jekyllrb.com":http://jekyllrb.com / "jekyllbootstrap.com":http://jekyllbootstrap.com
 
 Transform your plain text into static websites and blogs.
 a simple, blog aware, static site generator
@@ -94,7 +94,7 @@ bastante simples, baseado em arquivos e rake (uma das opções). não oferece in
 
 h2. nanoc
 
-http://nanoc.ws
+"nanoc.ws":http://nanoc.ws
 
 static site generator / small blog
 
@@ -102,13 +102,17 @@ not visual
 
 
 
-h2. ruhoh - ruhoh.com
+h2. ruhoh 
+
+"ruhoh.com":http://ruhoh.com
 
 static site generator, similar to jekyll, nanoc
 
 
 
-h2. middleman - middlemanapp.com
+h2. middleman 
+
+"middlemanapp.com":http://middlemanapp.com
 
 static site generator
 
@@ -116,7 +120,9 @@ bastante popular, parece redondo, baseado em command line
 
 
 
-h2. high_voltage - github.com/thoughtbot/high_voltage
+h2. high_voltage 
+
+"github.com/thoughtbot/high_voltage":http://github.com/thoughtbot/high_voltage
 
 easily include static pages in your rails app
 
@@ -124,13 +130,17 @@ bastante popular também.
 
 
 
-h2. octopress - octopress.org
+h2. octopress 
+
+"octopress.org":http://octopress.org
 
 Octopress is a blogging framework for hackers
 
 
 
-h2. toto - https://github.com/cloudhead/toto
+h2. toto - 
+
+"https://github.com/cloudhead/toto":https://github.com/cloudhead/toto
 
 the 10 second blog-engine for hackers
 
@@ -138,12 +148,18 @@ bem enxuto, não é mantido há pelo menos 3 anos
 
 
 
-h2. publify (typo) - demo.publify.co / https://github.com/publify/publify / http://blog.publify.co/
+h2. publify (typo)
+
+"demo.publify.co":http://demo.publify.co
+"https://github.com/publify/publify":https://github.com/publify/publify
+"http://blog.publify.co/":http://blog.publify.co/
 
 
 
+h2. blogit - 
 
-h2. blogit - https://github.com/KatanaCode/blogit / http://katanacode.com/blog
+"https://github.com/KatanaCode/blogit":https://github.com/KatanaCode/blogit
+"katanacode.com/blog":http://katanacode.com/blog
 
 A mountable Rails blogging engine
 parece bem enxuto e completinho. ainda tmp para rails 4. não consegui entender como usar (monta direitinho em /blog, mas como integrar na app eu não entendi)
@@ -153,4 +169,4 @@ parece bem enxuto e completinho. ainda tmp para rails 4. não consegui entender 
 
 
 
-ver adsf - A web server that can be spawned in any directory
+h3. ver adsf - A web server that can be spawned in any directory
