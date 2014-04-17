@@ -3,66 +3,6 @@ layout: post
 title: Avaliação de CMS
 ---
 
-h2. Testes com Refinery
-
-gem install rails -v 4.1.0
-. rails -v mostra 4.1.0
-rails _4.1.0_ new refinery3 -m http://refinerycms.com/t/edge
-rvm use 2.1.1
-. ruby -v mostra 2.1.1
-
-
-Instalação funcionando com 4.0.2, que é a atual (12/04/14) do Temporada:
-
-rails _4.0.2_ new arefblog -m http://refinerycms.com/t/edge
-
-
-rails _4.0.2_ new blognew -m http://refinerycms.com/t/edge
-
-gem 'refinerycms-blog', github: 'refinery/refinerycms-blog', branch: 'master'
-gem 'refinerycms-settings', github: 'refinery/refinerycms-settings', branch: 'master'
-
-bundle install
-rails generate refinery:blog
-rake db:migrate
-rake db:seed
-
-
-gem 'acts-as-taggable-on', '~> 3.0.2'
-bundle update acts-as-taggable-on
-rake acts_as_taggable_on_engine:install:migrations
-rake db:migrate
-rake db:seed
-
-
-
-cria nova app usando railes 4.0.2
-cria recurso users usando scaffold
-aponta root para users#index
-copia gems do refinery para gemfile
-bundle install
-rails generate refinery:cms --fresh-installation
-rails generate refinery:blog
-
-
-rails _4.0.2_ new existingblog
-cd existingblog
-subl .
-rails generate scaffold User name:string email:string
-rake db:migrate
-rails generate refinery:cms --fresh-installation
-... —fresh-installation sobrescreve existing rails files
-rails generate refinery:blog
-
-... quando nao coloca —fresh-installation:
-'You may need to remove 'app/views/layouts/application.html.erb' for Refinery to function properly'
-de fato, aparece que root (/) não existe (404)
-
-
-SQLite3::SQLException: no such column: taggings.tag_id: SELECT COUNT(*) FROM "tags" JOIN (SELECT taggings.tag_id, COUNT(taggings.tag_id) AS tags_count FROM "taggings" INNER JOIN refinery_blog_posts ON refinery_blog_posts.id = taggings.taggable_id WHERE (taggings.taggable_type = 'Refinery::Blog::Post' AND taggings.context = 'tags') AND (taggings.taggable_id IN(SELECT refinery_blog_posts.id FROM "refinery_blog_posts"  ORDER BY published_at DESC)) GROUP BY taggings.tag_id HAVING COUNT(taggings.tag_id) > 0) AS taggings ON taggings.tag_id = tags.id
-
-rake railties:install:migrations FROM=acts_as_taggable_on_engine db:migrate
-
 
 h1. Análises
 
@@ -167,6 +107,67 @@ parece bem enxuto e completinho. ainda tmp para rails 4. não consegui entender 
 
 
 
-
-
 h3. ver adsf - A web server that can be spawned in any directory
+
+
+
+h2. Testes com Refinery
+
+gem install rails -v 4.1.0
+. rails -v mostra 4.1.0
+rails _4.1.0_ new refinery3 -m http://refinerycms.com/t/edge
+rvm use 2.1.1
+. ruby -v mostra 2.1.1
+
+
+Instalação funcionando com 4.0.2, que é a atual (12/04/14) do Temporada:
+
+rails _4.0.2_ new arefblog -m http://refinerycms.com/t/edge
+
+
+rails _4.0.2_ new blognew -m http://refinerycms.com/t/edge
+
+gem 'refinerycms-blog', github: 'refinery/refinerycms-blog', branch: 'master'
+gem 'refinerycms-settings', github: 'refinery/refinerycms-settings', branch: 'master'
+
+bundle install
+rails generate refinery:blog
+rake db:migrate
+rake db:seed
+
+
+gem 'acts-as-taggable-on', '~> 3.0.2'
+bundle update acts-as-taggable-on
+rake acts_as_taggable_on_engine:install:migrations
+rake db:migrate
+rake db:seed
+
+
+
+cria nova app usando railes 4.0.2
+cria recurso users usando scaffold
+aponta root para users#index
+copia gems do refinery para gemfile
+bundle install
+rails generate refinery:cms --fresh-installation
+rails generate refinery:blog
+
+
+rails _4.0.2_ new existingblog
+cd existingblog
+subl .
+rails generate scaffold User name:string email:string
+rake db:migrate
+rails generate refinery:cms --fresh-installation
+... —fresh-installation sobrescreve existing rails files
+rails generate refinery:blog
+
+... quando nao coloca —fresh-installation:
+'You may need to remove 'app/views/layouts/application.html.erb' for Refinery to function properly'
+de fato, aparece que root (/) não existe (404)
+
+
+SQLite3::SQLException: no such column: taggings.tag_id: SELECT COUNT(*) FROM "tags" JOIN (SELECT taggings.tag_id, COUNT(taggings.tag_id) AS tags_count FROM "taggings" INNER JOIN refinery_blog_posts ON refinery_blog_posts.id = taggings.taggable_id WHERE (taggings.taggable_type = 'Refinery::Blog::Post' AND taggings.context = 'tags') AND (taggings.taggable_id IN(SELECT refinery_blog_posts.id FROM "refinery_blog_posts"  ORDER BY published_at DESC)) GROUP BY taggings.tag_id HAVING COUNT(taggings.tag_id) > 0) AS taggings ON taggings.tag_id = tags.id
+
+rake railties:install:migrations FROM=acts_as_taggable_on_engine db:migrate
+
