@@ -79,7 +79,7 @@ potenciais problemas: ele usa muitas gems, o que poderia causar conflito. taggab
 
 
 
-h2. jekyll - jekyllrb.com / jekyllbootstrap.com
+h2. jekyll - http://jekyllrb.com / http://jekyllbootstrap.com
 
 Transform your plain text into static websites and blogs.
 a simple, blog aware, static site generator
@@ -90,7 +90,7 @@ bastante simples, baseado em arquivos e rake (uma das opções). não oferece in
 
 
 
-h2. nanoc - nanoc.ws
+h2. nanoc - http://nanoc.ws
 
 static site generator / small blog
 
