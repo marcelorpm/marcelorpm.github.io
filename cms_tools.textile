@@ -1,0 +1,152 @@
+---
+layout: post
+title: Avaliação de CMS
+---
+
+h2. Testes com Refinery
+
+gem install rails -v 4.1.0
+. rails -v mostra 4.1.0
+rails _4.1.0_ new refinery3 -m http://refinerycms.com/t/edge
+rvm use 2.1.1
+. ruby -v mostra 2.1.1
+
+
+Instalação funcionando com 4.0.2, que é a atual (12/04/14) do Temporada:
+
+rails _4.0.2_ new arefblog -m http://refinerycms.com/t/edge
+
+
+rails _4.0.2_ new blognew -m http://refinerycms.com/t/edge
+
+gem 'refinerycms-blog', github: 'refinery/refinerycms-blog', branch: 'master'
+gem 'refinerycms-settings', github: 'refinery/refinerycms-settings', branch: 'master'
+
+bundle install
+rails generate refinery:blog
+rake db:migrate
+rake db:seed
+
+
+gem 'acts-as-taggable-on', '~> 3.0.2'
+bundle update acts-as-taggable-on
+rake acts_as_taggable_on_engine:install:migrations
+rake db:migrate
+rake db:seed
+
+
+
+cria nova app usando railes 4.0.2
+cria recurso users usando scaffold
+aponta root para users#index
+copia gems do refinery para gemfile
+bundle install
+rails generate refinery:cms --fresh-installation
+rails generate refinery:blog
+
+
+rails _4.0.2_ new existingblog
+cd existingblog
+subl .
+rails generate scaffold User name:string email:string
+rake db:migrate
+rails generate refinery:cms --fresh-installation
+... —fresh-installation sobrescreve existing rails files
+rails generate refinery:blog
+
+... quando nao coloca —fresh-installation:
+'You may need to remove 'app/views/layouts/application.html.erb' for Refinery to function properly'
+de fato, aparece que root (/) não existe (404)
+
+
+SQLite3::SQLException: no such column: taggings.tag_id: SELECT COUNT(*) FROM "tags" JOIN (SELECT taggings.tag_id, COUNT(taggings.tag_id) AS tags_count FROM "taggings" INNER JOIN refinery_blog_posts ON refinery_blog_posts.id = taggings.taggable_id WHERE (taggings.taggable_type = 'Refinery::Blog::Post' AND taggings.context = 'tags') AND (taggings.taggable_id IN(SELECT refinery_blog_posts.id FROM "refinery_blog_posts"  ORDER BY published_at DESC)) GROUP BY taggings.tag_id HAVING COUNT(taggings.tag_id) > 0) AS taggings ON taggings.tag_id = tags.id
+
+rake railties:install:migrations FROM=acts_as_taggable_on_engine db:migrate
+
+
+h1. Análises
+
+
+h2. refinery cms
+
+veredicto: overkill
+
+excelente interface, tem um monte de funcionalidade bacana, como a parte de seo, o editor, o layout das páginas etc.
+
+difícil de integrar (demorei praticamente 1,5 dia), principalmente porque ainda não está redondo para rails 4. difícil de manter as paginas anteriores como eram, porque ele sobrescreve o layouts/application.html.erb — teria que entender como voltar com esse arquivo e fazer os dois mecanismos conviverem.
+
+potenciais problemas: ele usa muitas gems, o que poderia causar conflito. taggable é uma delas, mas principalmente a parte de autenticação, globalize, internacionalização (tive problema com posts criados em um idioma e que não apareceram na página do outro, embora eu não tivesse trocado de idioma). apesar de ser amplamente usado, só dois caras cuidam da gem, o que pode atrasar correções.
+
+
+
+h2. jekyll - jekyllrb.com / jekyllbootstrap.com
+
+Transform your plain text into static websites and blogs.
+a simple, blog aware, static site generator
+Jekyll is Not Blogging Software. Jekyll is a parsing engine.
+veredicto: só pra hackers
+
+bastante simples, baseado em arquivos e rake (uma das opções). não oferece interface web, o que é ruim para a finalidade procurada. parece ser leve - avaliar para uso geral, especialmente porque dá pra hospedar gratuitamente no github (e usar o git pra postar).
+
+
+
+h2. nanoc - nanoc.ws
+
+static site generator / small blog
+
+not visual
+
+
+
+h2. ruhoh - ruhoh.com
+
+static site generator, similar to jekyll, nanoc
+
+
+
+h2. middleman - middlemanapp.com
+
+static site generator
+
+bastante popular, parece redondo, baseado em command line
+
+
+
+h2. high_voltage - github.com/thoughtbot/high_voltage
+
+easily include static pages in your rails app
+
+bastante popular também. 
+
+
+
+h2. octopress - octopress.org
+
+Octopress is a blogging framework for hackers
+
+
+
+h2. toto - https://github.com/cloudhead/toto
+
+the 10 second blog-engine for hackers
+
+bem enxuto, não é mantido há pelo menos 3 anos
+
+
+
+h2. publify (typo) - demo.publify.co / https://github.com/publify/publify / http://blog.publify.co/
+
+
+
+
+h2. blogit - https://github.com/KatanaCode/blogit / http://katanacode.com/blog
+
+A mountable Rails blogging engine
+parece bem enxuto e completinho. ainda tmp para rails 4. não consegui entender como usar (monta direitinho em /blog, mas como integrar na app eu não entendi)
+
+
+
+
+
+
+ver adsf - A web server that can be spawned in any directory
