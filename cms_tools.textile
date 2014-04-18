@@ -4,7 +4,7 @@ title: Avaliação de CMS
 ---
 
 
-h1. Análises
+h1. Avaliação de CMSs e Blogs para Rails
 
 
 h2. refinery cms
@@ -26,6 +26,7 @@ h2. jekyll
 Transform your plain text into static websites and blogs.
 a simple, blog aware, static site generator
 Jekyll is Not Blogging Software. Jekyll is a parsing engine.
+
 veredicto: só pra hackers
 
 bastante simples, baseado em arquivos e rake (uma das opções). não oferece interface web, o que é ruim para a finalidade procurada. parece ser leve - avaliar para uso geral, especialmente porque dá pra hospedar gratuitamente no github (e usar o git pra postar).
@@ -78,7 +79,7 @@ Octopress is a blogging framework for hackers
 
 
 
-h2. toto - 
+h2. toto 
 
 "https://github.com/cloudhead/toto":https://github.com/cloudhead/toto
 
@@ -96,19 +97,21 @@ h2. publify (typo)
 
 
 
-h2. blogit - 
+h2. blogit
 
 "https://github.com/KatanaCode/blogit":https://github.com/KatanaCode/blogit
 "katanacode.com/blog":http://katanacode.com/blog
 
 A mountable Rails blogging engine
-parece bem enxuto e completinho. ainda tmp para rails 4. não consegui entender como usar (monta direitinho em /blog, mas como integrar na app eu não entendi)
+parece bem enxuto e completinho. ainda tmp para rails 4. não consegui entender como usar (monta direitinho em /blog, mas como integrar na app eu não entendi). encontrei no blog da empresa que faz o blogit um comando para gerar as views, mas teve coisa que não funcionou (path posts/new, por exemplo). parece que não tem tags... mal documentado.
+
+
 
 
 
 
 h3. ver adsf - A web server that can be spawned in any directory
-
+h3. ver tb "railsinstallfest.org":http://railsinstallfest.org para um artigo sobre escrever um blog
 
 
 h2. Testes com Refinery
