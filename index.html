@@ -1,5 +1,11 @@
-Hello World
-
-* _um_
-=======
-* dois
+---
+layout: default
+title: Your New Jekyll Site
+---
+<ul>
+  {% for post in site.posts %}
+    <li>
+      <a href="{{ post.url }}">{{ post.title }}</a>
+    </li>
+  {% endfor %}
+</ul>

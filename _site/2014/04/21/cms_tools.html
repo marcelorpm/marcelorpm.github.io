@@ -1,0 +1,91 @@
+<h2>Avaliacao de CMS</h2>
+<p class="meta">21 Apr 2014</p>
+
+<div class="post">
+<h1>Avaliação de CMSs e Blogs para Rails</h1>
+<h2>refinery cms</h2>
+<p>veredicto: overkill</p>
+<p>excelente interface, tem um monte de funcionalidade bacana, como a parte de seo, o editor, o layout das páginas etc.</p>
+<p>difícil de integrar (demorei praticamente 1,5 dia), principalmente porque ainda não está redondo para rails 4. difícil de manter as paginas anteriores como eram, porque ele sobrescreve o layouts/application.html.erb — teria que entender como voltar com esse arquivo e fazer os dois mecanismos conviverem.</p>
+<p>potenciais problemas: ele usa muitas gems, o que poderia causar conflito. taggable é uma delas, mas principalmente a parte de autenticação, globalize, internacionalização (tive problema com posts criados em um idioma e que não apareceram na página do outro, embora eu não tivesse trocado de idioma). apesar de ser amplamente usado, só dois caras cuidam da gem, o que pode atrasar correções.</p>
+<h2>jekyll</h2>
+<p><a href="http://jekyllrb.com">jekyllrb.com</a> / <a href="http://jekyllbootstrap.com">jekyllbootstrap.com</a></p>
+<p>Transform your plain text into static websites and blogs.<br />
+a simple, blog aware, static site generator<br />
+Jekyll is Not Blogging Software. Jekyll is a parsing engine.</p>
+<p>veredicto: só pra hackers</p>
+<p>bastante simples, baseado em arquivos e rake (uma das opções). não oferece interface web, o que é ruim para a finalidade procurada. parece ser leve &#8211; avaliar para uso geral, especialmente porque dá pra hospedar gratuitamente no github (e usar o git pra postar).</p>
+<h2>nanoc</h2>
+<p><a href="http://nanoc.ws">nanoc.ws</a></p>
+<p>static site generator / small blog</p>
+<p>not visual</p>
+<h2>ruhoh</h2>
+<p><a href="http://ruhoh.com">ruhoh.com</a></p>
+<p>static site generator, similar to jekyll, nanoc</p>
+<h2>middleman</h2>
+<p><a href="http://middlemanapp.com">middlemanapp.com</a></p>
+<p>static site generator</p>
+<p>bastante popular, parece redondo, baseado em command line</p>
+<h2>high_voltage</h2>
+<p><a href="http://github.com/thoughtbot/high_voltage">github.com/thoughtbot/high_voltage</a></p>
+<p>easily include static pages in your rails app</p>
+<p>bastante popular também.</p>
+<h2>octopress</h2>
+<p><a href="http://octopress.org">octopress.org</a></p>
+<p>Octopress is a blogging framework for hackers</p>
+<h2>toto</h2>
+<p><a href="https://github.com/cloudhead/toto">https://github.com/cloudhead/toto</a></p>
+<p>the 10 second blog-engine for hackers</p>
+<p>bem enxuto, não é mantido há pelo menos 3 anos</p>
+<h2>publify (typo)</h2>
+<p><a href="http://demo.publify.co">demo.publify.co</a><br />
+<a href="https://github.com/publify/publify">https://github.com/publify/publify</a><br />
+<a href="http://blog.publify.co/">http://blog.publify.co/</a></p>
+<h2>blogit</h2>
+<p><a href="https://github.com/KatanaCode/blogit">https://github.com/KatanaCode/blogit</a><br />
+<a href="http://katanacode.com/blog">katanacode.com/blog</a></p>
+<p>A mountable Rails blogging engine<br />
+parece bem enxuto e completinho. ainda tmp para rails 4. não consegui entender como usar (monta direitinho em /blog, mas como integrar na app eu não entendi). encontrei no blog da empresa que faz o blogit um comando para gerar as views, mas teve coisa que não funcionou (path posts/new, por exemplo). parece que não tem tags&#8230; mal documentado.</p>
+<h3>ver adsf &#8211; A web server that can be spawned in any directory<br />
+h3. ver tb <a href="http://railsinstallfest.org">railsinstallfest.org</a> para um artigo sobre escrever um blog</h3>
+<h2>Testes com Refinery</h2>
+<p>gem install rails -v 4.1.0<br />
+. rails -v mostra 4.1.0<br />
+rails <em>4.1.0</em> new refinery3 -m http://refinerycms.com/t/edge<br />
+rvm use 2.1.1<br />
+. ruby -v mostra 2.1.1</p>
+<p>Instalação funcionando com 4.0.2, que é a atual (12/04/14) do Temporada:</p>
+<p>rails <em>4.0.2</em> new arefblog -m http://refinerycms.com/t/edge</p>
+<p>rails <em>4.0.2</em> new blognew -m http://refinerycms.com/t/edge</p>
+<p>gem &#8216;refinerycms-blog&#8217;, github: &#8216;refinery/refinerycms-blog&#8217;, branch: &#8216;master&#8217;<br />
+gem &#8216;refinerycms-settings&#8217;, github: &#8216;refinery/refinerycms-settings&#8217;, branch: &#8216;master&#8217;</p>
+<p>bundle install<br />
+rails generate refinery:blog<br />
+rake db:migrate<br />
+rake db:seed</p>
+<p>gem &#8216;acts-as-taggable-on&#8217;, &#8216;~&gt; 3.0.2&#8217;<br />
+bundle update acts-as-taggable-on<br />
+rake acts_as_taggable_on_engine:install:migrations<br />
+rake db:migrate<br />
+rake db:seed</p>
+<p>cria nova app usando railes 4.0.2<br />
+cria recurso users usando scaffold<br />
+aponta root para users#index<br />
+copia gems do refinery para gemfile<br />
+bundle install<br />
+rails generate refinery:cms &#8212;fresh-installation<br />
+rails generate refinery:blog</p>
+<p>rails <em>4.0.2</em> new existingblog<br />
+cd existingblog<br />
+subl .<br />
+rails generate scaffold User name:string email:string<br />
+rake db:migrate<br />
+rails generate refinery:cms &#8212;fresh-installation<br />
+&#8230; —fresh-installation sobrescreve existing rails files<br />
+rails generate refinery:blog</p>
+<p>&#8230; quando nao coloca —fresh-installation:<br />
+&#8216;You may need to remove &#8217;app/views/layouts/application.html.erb&#8217; for Refinery to function properly&#8217;<br />
+de fato, aparece que root (/) não existe (404)</p>
+<p>SQLite3::SQLException: no such column: taggings.tag_id: <span class="caps">SELECT</span> <acronym title="*"><span class="caps">COUNT</span></acronym> <span class="caps">FROM</span> &#8220;tags&#8221; <span class="caps">JOIN</span> (<span class="caps">SELECT</span> taggings.tag_id, <acronym title="taggings.tag_id"><span class="caps">COUNT</span></acronym> AS tags_count <span class="caps">FROM</span> &#8220;taggings&#8221; <span class="caps">INNER</span> <span class="caps">JOIN</span> refinery_blog_posts ON refinery_blog_posts.id = taggings.taggable_id <span class="caps">WHERE</span> (taggings.taggable_type = &#8216;Refinery::Blog::Post&#8217; <span class="caps">AND</span> taggings.context = &#8216;tags&#8217;) <span class="caps">AND</span> (taggings.taggable_id <acronym title="SELECT refinery_blog_posts.id FROM &quot;refinery_blog_posts&quot;  ORDER BY published_at DESC"><span class="caps">IN</span></acronym>) <span class="caps">GROUP</span> BY taggings.tag_id <span class="caps">HAVING</span> <acronym title="taggings.tag_id"><span class="caps">COUNT</span></acronym> &gt; 0) AS taggings ON taggings.tag_id = tags.id</p>
+<p>rake railties:install:migrations <span class="caps">FROM</span>=acts_as_taggable_on_engine db:migrate</p>
+</div>
